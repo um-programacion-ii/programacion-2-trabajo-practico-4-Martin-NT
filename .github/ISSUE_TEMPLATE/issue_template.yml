@@ -70,17 +70,18 @@ body:
       required: true
 
   - type: checkboxes
-    id: checklist
+    id: etiquetas
     attributes:
-      label: Checklist de finalización
-      description: Marcá los puntos que se deben cumplir para dar la tarea como terminada
+      label: Área relacionada (seleccionar al menos una)
+      description: Elegí las etiquetas que describen la naturaleza de esta tarea.
       options:
-        - label: `enhancement`
-        - label: `bug`
-        - label: `documentation`
-        - label: `testing`
-        - label: `model`
-        - label: `repository`
-        - label: `service`
-        - label: `controller`
-        - label: `database`
+        - label: Enhancement
+        - label: Bug
+        - label: Documentation
+        - label: Testing
+        - label: Model
+        - label: Repository
+        - label: Service
+        - label: Controller
+        - label: Database
+
