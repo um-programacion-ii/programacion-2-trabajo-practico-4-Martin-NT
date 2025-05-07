@@ -1,6 +1,6 @@
 name: Tarea de desarrollo
 description: Crear una nueva tarea del trabajo práctico vinculada a un milestone y proyecto
-title: " "
+title: "[Tarea] "
 labels: ["tarea"]
 assignees:
   - 
