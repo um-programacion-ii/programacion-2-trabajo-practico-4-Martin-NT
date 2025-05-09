@@ -467,20 +467,22 @@ class LibroServiceImplTest {
 ### Instrucciones de Instalación
 - Posicionarse en una carpeta para poner el proyecto
 - Abrir la terminal y copiar los siguientes comandos: 
-1. Clonar el repositorio:
+1. Clonar el repositorio
    ```bash
    git clone git@github.com:um-programacion-ii/programacion-2-trabajo-practico-4-Martin-NT.git
    cd programacion-2-trabajo-practico-4-Martin-NT
 
-2. Descargar el compilador de Java (javac)
+2. Instalar Java y Maven
+- Asegúrate de tener Java 21 y Maven 3.6 o superior instalados:
    ```bash
    sudo apt install default-jdk
+   sudo apt install maven
 
 3. Navegar al directorio del proyecto
    ```bash
    cd TP4
 
-4. Compilar Proyecto
+4. Compilar el Proyecto
    ```bash
    mvn clean install
    
@@ -522,17 +524,18 @@ Todos los endpoints están bajo el prefijo /api. A continuación, se detallan lo
 
 ### 🧱 Arquitectura del Sistema
 El proyecto sigue una arquitectura en capas, basada en buenas prácticas de diseño:
-    - Modelo (model): Clases Libro, Usuario, Prestamo y enums relacionados.
-    - Repositorio (repository): Interfaces para el acceso a datos en memoria (Map) con implementaciones simples.
-    - Servicio (service): Lógica de negocio encapsulada en interfaces y clases ServiceImpl.
-    - Controlador (controller): Exposición de endpoints REST.
-    - Excepciones (exception): Manejo centralizado de errores personalizados.
-    - Enums (enums): Enums utilizado para los Estados de Libro y Usuario
+
+- Modelo (model): Clases Libro, Usuario, Prestamo y enums relacionados.
+- Repositorio (repository): Interfaces para el acceso a datos en memoria (Map) con implementaciones simples.
+- Servicio (service): Lógica de negocio encapsulada en interfaces y clases ServiceImpl.
+- Controlador (controller): Exposición de endpoints REST.
+- Excepciones (exception): Manejo centralizado de errores personalizados.
+- Enums (enums): Enums utilizado para los Estados de Libro y Usuario
     
-    Testing (test): Separación clara entre tests unitarios y de integración.
-        - Tests Controller (controller): Las pruebas de los controladores validan que los endpoints REST respondan correctamente a las solicitudes.
-        - Test Repository (repository): Las pruebas de repositorio validan las operaciones de acceso a datos, garantizando que las clases de repositorio interactúen correctamente con las estructuras de datos en memoria. 
-        - Test Service (service): Las pruebas de servicio verifican que la lógica de negocio se ejecute correctamente.
+- Testing (test): Separación clara entre tests unitarios y de integración.
+    - Tests Controller (controller): Las pruebas de los controladores validan que los endpoints REST respondan correctamente a las solicitudes.
+    - Test Repository (repository): Las pruebas de repositorio validan las operaciones de acceso a datos, garantizando que las clases de repositorio interactúen correctamente con las estructuras de datos en memoria. 
+    - Test Service (service): Las pruebas de servicio verifican que la lógica de negocio se ejecute correctamente.
 
 ### 🧠 Decisiones de Diseño
 - Se optó por usar almacenamiento en memoria (HashMap) para facilitar el desarrollo y testing sin una base de datos real.
