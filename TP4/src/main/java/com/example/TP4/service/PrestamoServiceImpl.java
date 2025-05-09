@@ -33,7 +33,7 @@ public class PrestamoServiceImpl implements PrestamoService {
     @Override
     public Prestamo buscarPorUsuario(Usuario usuario) {
         return prestamoRepository.findByUsuario(usuario)
-                .orElseThrow(() -> new UsuarioNoEncontradoException("No hay préstamo registrado para el usuario " + usuario.getNombre()));
+                .orElseThrow(() -> new UsuarioNoEncontradoException("No hay préstamo registrado para el usuario " + usuario.getNombre() + " " + usuario.getApellido()));
     }
 
     @Override
