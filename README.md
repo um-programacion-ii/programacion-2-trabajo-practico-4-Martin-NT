@@ -119,8 +119,8 @@ Desarrollar un sistema de gestión de biblioteca utilizando Spring Framework, im
 > 💡 **Nota**: Esta estimación considera la experiencia adquirida en trabajos anteriores y la complejidad de implementar una arquitectura en capas con Spring Framework. El tiempo se ha ajustado considerando que no se requiere implementación de persistencia real.
 
 ## 👨‍🎓 Información del Alumno
-- **Nombre y Apellido**: [Nombre y Apellido del Alumno]
-- **Legajo**: [Número de Legajo]
+- **Nombre y Apellido**: Martin Navarro Teixidor
+- **Legajo**: 62181
 
 ## 📋 Requisitos Previos
 
@@ -461,6 +461,113 @@ class LibroServiceImplTest {
   - Requisitos del sistema
   - Ejemplos de uso
   - Documentación de endpoints
+
+## 📖 Documentación Técnica
+
+### Instrucciones de Instalación
+- Posicionarse en una carpeta para poner el proyecto
+- Abrir la terminal y copiar los siguientes comandos: 
+1. Clonar el repositorio:
+   ```bash
+   git clone git@github.com:um-programacion-ii/programacion-2-trabajo-practico-4-Martin-NT.git
+   cd programacion-2-trabajo-practico-4-Martin-NT
+
+2. Descargar el compilador de Java (javac)
+   ```bash
+   sudo apt install default-jdk
+
+3. Navegar al directorio del proyecto
+   ```bash
+   cd TP4
+
+4. Compilar Proyecto
+   ```bash
+   mvn clean install
+   
+5. Ejecutar la aplicación principal: 
+   ```bash
+   mvn spring-boot:run
+
+- O desde tu IDE, ejecutar la clase Tp4Application.java
+
+### 🔌 Documentación de Endpoints (API REST)
+Todos los endpoints están bajo el prefijo /api. A continuación, se detallan los principales:
+
+#### 📚 Libros
+- GET /api/libros – Listar todos los libros
+- GET /api/libros/{id} – Obtener un libro por ID
+- GET /api/libros/isbn/{isbn} – Obtener un libro por ISBN
+- POST /api/libros – Crear un nuevo libro
+- PUT /api/libros/{id} – Actualizar un libro existente
+- DELETE /api/libros/{id} – Eliminar un libro
+
+#### 👤 Usuarios
+- GET /api/usuarios – Listar usuarios
+- GET /api/usuarios/{id} – Obtener un usuario por ID
+- GET /api/usuarios/nombre/{nombre}/apellido/{apellido} – Obtener un usuario por nombre y apellido  
+- POST /api/usuarios – Crear usuario
+- PUT /api/usuarios/{id} – Actualizar usuario
+- DELETE /api/usuarios/{id} – Eliminar usuario
+
+#### 📅 Préstamos
+- GET /api/prestamos – Listar préstamos
+- GET /api/prestamos/{id} – Ver préstamo por ID
+- GET /api/prestamos/libro – Ver préstamo por Libro
+- GET /api/prestamos/usuario – Ver préstamo por Usuario
+- POST /api/prestamos – Crear préstamo
+- PUT /api/prestamos/{id} – Finalizar/modificar préstamo
+- DELETE /api/prestamos/{id} – Eliminar préstamo
+
+💡 Cada controlador y método está documentado con comentarios JavaDoc para facilitar su comprensión.
+
+### 🧱 Arquitectura del Sistema
+El proyecto sigue una arquitectura en capas, basada en buenas prácticas de diseño:
+    - Modelo (model): Clases Libro, Usuario, Prestamo y enums relacionados.
+    - Repositorio (repository): Interfaces para el acceso a datos en memoria (Map) con implementaciones simples.
+    - Servicio (service): Lógica de negocio encapsulada en interfaces y clases ServiceImpl.
+    - Controlador (controller): Exposición de endpoints REST.
+    - Excepciones (exception): Manejo centralizado de errores personalizados.
+    - Enums (enums): Enums utilizado para los Estados de Libro y Usuario
+    
+    Testing (test): Separación clara entre tests unitarios y de integración.
+        - Tests Controller (controller): Las pruebas de los controladores validan que los endpoints REST respondan correctamente a las solicitudes.
+        - Test Repository (repository): Las pruebas de repositorio validan las operaciones de acceso a datos, garantizando que las clases de repositorio interactúen correctamente con las estructuras de datos en memoria. 
+        - Test Service (service): Las pruebas de servicio verifican que la lógica de negocio se ejecute correctamente.
+
+### 🧠 Decisiones de Diseño
+- Se optó por usar almacenamiento en memoria (HashMap) para facilitar el desarrollo y testing sin una base de datos real.
+- La separación en interfaces permite mayor flexibilidad para futuras migraciones a bases de datos persistentes.
+- El código aplica principios SOLID, facilitando el mantenimiento y escalabilidad.
+- Se usó Optional para evitar null en las respuestas de los repositorios.
+- Uso de @RestController, @Service, @Repository y @RequestMapping para separar claramente responsabilidades.
+- Testing con Mockito permite validar la lógica sin depender de datos reales.
+
+### 💻 Evidencia de que las pruebas pasan correctamente
+
+#### Tests Controller
+![Pruebas de Libro](assets/libro_controller_test.png)
+![Pruebas de Usuario](assets/usuario_controller_test.png)
+![Pruebas de Préstamo](assets/prestamo_controller_test.png)
+
+#### Tests Repository
+![Pruebas de Libro](assets/libro_repository_test.png)
+![Pruebas de Usuario](assets/usuario_repository_test.png)
+![Pruebas de Préstamo](assets/prestamo_repository_test.png)
+
+#### Tests Service
+![Pruebas de Libro](assets/libro_service_test.png)
+![Pruebas de Usuario](assets/usuario_service_test.png)
+![Pruebas de Préstamo](assets/prestamo_service_test.png)
+
+### 🤖 Uso de la IA de parte del Estudiante
+Se uso Inteligencia artificial para fijar conceptos y aprender:
+    - En la Etapa 3, en la parte de Manejo de Excepciones HTTP
+    - En la Etapa 4, especialmente en la parte de Tests de integración de la capa controller
+
+#### Nota
+Para manejar las excepciones HTTP de forma centralizada, utilicé una clase `GlobalExceptionHandler` con la anotación `@ControllerAdvice`, una técnica recomendada por Spring. Esta clase captura excepciones personalizadas como `LibroNoEncontradoException`, `UsuarioNoEncontradoException` y `PrestamoNoEncontradoException`, devolviendo una respuesta clara al cliente con un código HTTP adecuado (como `404 Not Found`) y un mensaje útil.
+
+Para implementar correctamente esta solución, consulté documentación oficial y además utilicé herramientas de inteligencia artificial (IA), como ChatGPT, que me ayudaron a comprender los conceptos clave y a estructurar el código siguiendo buenas prácticas. Esta asistencia me permitió aprender de forma más rápida y aplicar el enfoque correcto para el manejo de errores en APIs REST.
 
 ## 📚 Recursos Adicionales
 
